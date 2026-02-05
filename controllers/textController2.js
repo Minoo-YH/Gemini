@@ -16,10 +16,27 @@ const generateText2 = async (req, res) => {
   }
 
   const prompt = `
-    I am a ${experience} individual looking to focus on ${fitnessType}.
-    My goal is to ${goal}, and I plan to train ${frequency} times per week.
-    Provide a structured fitness guideline including recommended exercises, duration, and any diet suggestions.
-  `;
+You are a professional fitness coach.
+
+I am a ${experience} individual focusing on ${fitnessType}.
+My main goal is to ${goal}.
+I can train ${frequency} times per week.
+
+Please return the response in Markdown format with the following structure:
+
+## Weekly Training Plan
+- Number of training days
+- Workout split
+
+## Exercise Recommendations
+- Example exercises per session
+
+## Workout Duration
+- Estimated duration per workout
+
+## Nutrition Tips
+- Basic diet suggestions
+`;
 
   try {
     const result = await model(prompt);
