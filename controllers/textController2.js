@@ -9,8 +9,7 @@ const model = require("../config/gemini");
 // }
 
 const generateText2 = async (req, res) => {
-
-  const { fitnessType, frequency, experience, goal } = req.body;//|| {};
+  const { fitnessType, frequency, experience, goal } = req.body; //|| {};
 
   if (!fitnessType || !frequency || !experience || !goal) {
     return res.status(400).json({ message: "All fields are required." });
@@ -24,12 +23,13 @@ const generateText2 = async (req, res) => {
 
   try {
     const result = await model(prompt);
-    res.json({ output: result.text });
+    res.json({
+      success: true,
+      output: result.text,
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    res.status(500).json({ error: error.message });
   }
-
-
 };
 
 module.exports = generateText2;
